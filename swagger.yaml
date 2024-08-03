@@ -1,0 +1,579 @@
+openapi: 3.0.3
+info:
+  title: Group 2 Final Project
+  version: 1.0.0
+  description: API for managing posts, comments, albums, photos, todos, and users
+
+servers:
+  - url: https://jsonplaceholder.typicode.com
+
+tags:
+  - name: Posts
+  - name: Comments
+  - name: Albums
+  - name: Photos
+  - name: Todos
+  - name: Users
+
+paths:
+  # Posts
+  /posts:
+    get:
+      summary: Get all posts
+      tags: [Posts]
+      responses:
+        '200':
+          description: Successful response
+    post:
+      summary: Create a new post
+      tags: [Posts]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PostInput'
+      responses:
+        '201':
+          description: Post created successfully
+
+  /posts/{postId}:
+    get:
+      summary: Get a post by ID
+      tags: [Posts]
+      parameters:
+        - $ref: '#/components/parameters/postId'
+      responses:
+        '200':
+          description: Successful response
+    put:
+      summary: Update a post
+      tags: [Posts]
+      parameters:
+        - $ref: '#/components/parameters/postId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PostInput'
+      responses:
+        '200':
+          description: Post updated successfully
+    delete:
+      summary: Delete a post
+      tags: [Posts]
+      parameters:
+        - $ref: '#/components/parameters/postId'
+      responses:
+        '204':
+          description: Post deleted successfully
+
+  # Comments
+  /comments:
+    get:
+      summary: Get all comments
+      tags: [Comments]
+      responses:
+        '200':
+          description: Successful response
+    post:
+      summary: Create a new comment
+      tags: [Comments]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CommentInput'
+      responses:
+        '201':
+          description: Comment created successfully
+
+  /comments/{commentId}:
+    get:
+      summary: Get a comment by ID
+      tags: [Comments]
+      parameters:
+        - $ref: '#/components/parameters/commentId'
+      responses:
+        '200':
+          description: Successful response
+    put:
+      summary: Update a comment
+      tags: [Comments]
+      parameters:
+        - $ref: '#/components/parameters/commentId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CommentInput'
+      responses:
+        '200':
+          description: Comment updated successfully
+    delete:
+      summary: Delete a comment
+      tags: [Comments]
+      parameters:
+        - $ref: '#/components/parameters/commentId'
+      responses:
+        '204':
+          description: Comment deleted successfully
+
+  # Albums
+  /albums:
+    get:
+      summary: Get all albums
+      tags: [Albums]
+      responses:
+        '200':
+          description: Successful response
+    post:
+      summary: Create a new album
+      tags: [Albums]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AlbumInput'
+      responses:
+        '201':
+          description: Album created successfully
+
+  /albums/{albumId}:
+    get:
+      summary: Get an album by ID
+      tags: [Albums]
+      parameters:
+        - $ref: '#/components/parameters/albumId'
+      responses:
+        '200':
+          description: Successful response
+    put:
+      summary: Update an album
+      tags: [Albums]
+      parameters:
+        - $ref: '#/components/parameters/albumId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AlbumInput'
+      responses:
+        '200':
+          description: Album updated successfully
+    delete:
+      summary: Delete an album
+      tags: [Albums]
+      parameters:
+        - $ref: '#/components/parameters/albumId'
+      responses:
+        '204':
+          description: Album deleted successfully
+
+  # Photos
+  /photos:
+    get:
+      summary: Get all photos
+      tags: [Photos]
+      responses:
+        '200':
+          description: Successful response
+    post:
+      summary: Create a new photo
+      tags: [Photos]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PhotoInput'
+      responses:
+        '201':
+          description: Photo created successfully
+
+  /photos/{photoId}:
+    get:
+      summary: Get a photo by ID
+      tags: [Photos]
+      parameters:
+        - $ref: '#/components/parameters/photoId'
+      responses:
+        '200':
+          description: Successful response
+    put:
+      summary: Update a photo
+      tags: [Photos]
+      parameters:
+        - $ref: '#/components/parameters/photoId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PhotoInput'
+      responses:
+        '200':
+          description: Photo updated successfully
+    delete:
+      summary: Delete a photo
+      tags: [Photos]
+      parameters:
+        - $ref: '#/components/parameters/photoId'
+      responses:
+        '204':
+          description: Photo deleted successfully
+
+  # Todos
+  /todos:
+    get:
+      summary: Get all todos
+      tags: [Todos]
+      responses:
+        '200':
+          description: Successful response
+    post:
+      summary: Create a new todo
+      tags: [Todos]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TodoInput'
+      responses:
+        '201':
+          description: Todo created successfully
+
+  /todos/{todoId}:
+    get:
+      summary: Get a todo by ID
+      tags: [Todos]
+      parameters:
+        - $ref: '#/components/parameters/todoId'
+      responses:
+        '200':
+          description: Successful response
+    put:
+      summary: Update a todo
+      tags: [Todos]
+      parameters:
+        - $ref: '#/components/parameters/todoId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TodoInput'
+      responses:
+        '200':
+          description: Todo updated successfully
+    delete:
+      summary: Delete a todo
+      tags: [Todos]
+      parameters:
+        - $ref: '#/components/parameters/todoId'
+      responses:
+        '204':
+          description: Todo deleted successfully
+
+  # Users
+  /users:
+    get:
+      summary: Get all users
+      tags: [Users]
+      responses:
+        '200':
+          description: Successful response
+    post:
+      summary: Create a new user
+      tags: [Users]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserInput'
+      responses:
+        '201':
+          description: User created successfully
+
+  /users/{userId}:
+    get:
+      summary: Get a user by ID
+      tags: [Users]
+      parameters:
+        - $ref: '#/components/parameters/userId'
+      responses:
+        '200':
+          description: Successful response
+    put:
+      summary: Update a user
+      tags: [Users]
+      parameters:
+        - $ref: '#/components/parameters/userId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserInput'
+      responses:
+        '200':
+          description: User updated successfully
+    delete:
+      summary: Delete a user
+      tags: [Users]
+      parameters:
+        - $ref: '#/components/parameters/userId'
+      responses:
+        '204':
+          description: User deleted successfully
+
+components:
+  parameters:
+    postId:
+      name: postId
+      in: path
+      required: true
+      schema:
+        type: integer
+      description: The unique identifier of the post
+      example: 1
+    commentId:
+      name: commentId
+      in: path
+      required: true
+      schema:
+        type: integer
+      description: The unique identifier of the comment
+      example: 1
+    albumId:
+      name: albumId
+      in: path
+      required: true
+      schema:
+        type: integer
+      description: The unique identifier of the album
+      example: 1
+    photoId:
+      name: photoId
+      in: path
+      required: true
+      schema:
+        type: integer
+      description: The unique identifier of the photo
+      example: 1
+    todoId:
+      name: todoId
+      in: path
+      required: true
+      schema:
+        type: integer
+      description: The unique identifier of the todo
+      example: 1
+    userId:
+      name: userId
+      in: path
+      required: true
+      schema:
+        type: integer
+      description: The unique identifier of the user
+      example: 1
+
+  schemas:
+    PostInput:
+      type: object
+      properties:
+        title:
+          type: string
+          description: The title of the post
+          example: "My First Blog Post"
+        body:
+          type: string
+          description: The content of the post
+          example: "This is the content of my first blog post. It's very exciting!"
+        userId:
+          type: integer
+          description: The ID of the user who created the post
+          example: 1
+      required:
+        - title
+        - body
+        - userId
+
+    CommentInput:
+      type: object
+      properties:
+        postId:
+          type: integer
+          description: The ID of the post this comment belongs to
+          example: 1
+        name:
+          type: string
+          description: The name of the commenter
+          example: "John Doe"
+        email:
+          type: string
+          format: email
+          description: The email of the commenter
+          example: "john.doe@example.com"
+        body:
+          type: string
+          description: The content of the comment
+          example: "Great post! I really enjoyed reading it."
+      required:
+        - postId
+        - name
+        - email
+        - body
+
+    AlbumInput:
+      type: object
+      properties:
+        userId:
+          type: integer
+          description: The ID of the user who owns the album
+          example: 1
+        title:
+          type: string
+          description: The title of the album
+          example: "My Summer Vacation"
+      required:
+        - userId
+        - title
+
+    PhotoInput:
+      type: object
+      properties:
+        albumId:
+          type: integer
+          description: The ID of the album this photo belongs to
+          example: 1
+        title:
+          type: string
+          description: The title of the photo
+          example: "Sunset at the Beach"
+        url:
+          type: string
+          format: uri
+          description: The URL of the full-size photo
+          example: "https://example.com/photos/sunset.jpg"
+        thumbnailUrl:
+          type: string
+          format: uri
+          description: The URL of the photo thumbnail
+          example: "https://example.com/photos/sunset_thumb.jpg"
+      required:
+        - albumId
+        - title
+        - url
+        - thumbnailUrl
+
+    TodoInput:
+      type: object
+      properties:
+        userId:
+          type: integer
+          description: The ID of the user who owns the todo
+          example: 1
+        title:
+          type: string
+          description: The title of the todo item
+          example: "Buy groceries"
+        completed:
+          type: boolean
+          description: Whether the todo item has been completed
+          example: false
+      required:
+        - userId
+        - title
+        - completed
+
+    UserInput:
+      type: object
+      properties:
+        name:
+          type: string
+          description: The full name of the user
+          example: "John Doe"
+        username:
+          type: string
+          description: The username for the account
+          example: "johndoe"
+        email:
+          type: string
+          format: email
+          description: The email address of the user
+          example: "john.doe@example.com"
+        address:
+          $ref: '#/components/schemas/Address'
+        phone:
+          type: string
+          description: The phone number of the user
+          example: "1-770-736-8031 x56442"
+        website:
+          type: string
+          format: uri
+          description: The website of the user
+          example: "hildegard.org"
+        company:
+          $ref: '#/components/schemas/Company'
+      required:
+        - name
+        - username
+        - email
+
+    Address:
+      type: object
+      properties:
+        street:
+          type: string
+          description: The street name
+          example: "Kulas Light"
+        suite:
+          type: string
+          description: The suite or apartment number
+          example: "Apt. 556"
+        city:
+          type: string
+          description: The city name
+          example: "Gwenborough"
+        zipcode:
+          type: string
+          description: The zipcode
+          example: "92998-3874"
+        geo:
+          $ref: '#/components/schemas/Geo'
+
+    Geo:
+      type: object
+      properties:
+        lat:
+          type: string
+          description: The latitude coordinate
+          example: "-37.3159"
+        lng:
+          type: string
+          description: The longitude coordinate
+          example: "81.1496"
+
+    Company:
+      type: object
+      properties:
+        name:
+          type: string
+          description: The name of the company
+          example: "Romaguera-Crona"
+        catchPhrase:
+          type: string
+          description: The company's catch phrase
+          example: "Multi-layered client-server neural-net"
+        bs:
+          type: string
+          description: The company's business strategy
+          example: "harness real-time e-markets"
